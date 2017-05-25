@@ -2,14 +2,89 @@
 <html>
 <head>
 
-	<meta charset= "UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta carset="UTF-8">
+	<title>Psychic Game</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script src= assets/javascript/game.js></script>
-	<title>Psychic Game</title>
 </head>
 <body>
 
+	<h1>Psychic Game</h1>
+
+	<div id= "game">
+		<ul class= "list">
+			<li class="list-item"><p id="wins">Wins: </p></li>
+            <li class="list-item"><p id="losses">Losses: </p></li>
+            <li class="list-item"><p id="left">Guesses Left: </p></li>
+            <li class="list-item"><p id="soFar">Your Guesses so far: </p></li>
+        </ul> 
+
 </body>
+
+<script type="text/javascript">
+	
+var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+var wins = 0;
+var losses = 0;
+var guesses = 9;
+var guessesLeft = 9;
+var guessedLetters = [];
+var answer = null;
+
+
+//random
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+var updateGuessesSoFar = function() {
+  document.querySelector("#soFar").innerHTML = "Your Guesses so far: " + guessedLetters.join(", ");
+  		//find a way to not allow the same letter to be clicked twice
+
+};
+
+var updateGuessesLeft = function() {
+  document.querySelector("#left").innerHTML = "Guesses left: " + guessesLeft;
+};
+
+var updateAnswer = function() {
+  this.answer = this.computerChoices[Math.floor(Math.random() * this.computerChoices.length)];
+};
+
+var reset = function() {
+  totalGuesses = 9;
+  guessesLeft = 9;
+  guessedLetters = [];
+
+  updateAnswer();
+  updateGuessesLeft();
+  updateGuessesSoFar();
+}
+
+document.onkeyup = function(event) {
+    guessesLeft--;
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+  guessedLetters.push(userGuess);
+  updateGuessesLeft();
+  updateGuessesSoFar();
+
+        if (guessesLeft > 0){
+            if (userGuess == answer){
+                wins++;
+                document.querySelector("#wins").innerHTML = "Wins: " + wins;
+                alert("You Win!");
+                reset();
+            }
+        }else if(guessesLeft == 0){
+            losses++;
+            document.querySelector("#losses").innerHTML = "Losses: " + losses;
+            alert("You Loose!");
+            reset();
+        }
+};
+
+
+</script>
+
+
 </html>
