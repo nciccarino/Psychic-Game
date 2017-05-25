@@ -31,6 +31,7 @@ var guesses = 9;
 var guessesLeft = 9;
 var guessedLetters = [];
 var answer = null;
+var badLetters = []; 
 
 
 //random
@@ -75,12 +76,18 @@ document.onkeyup = function(event) {
                 alert("You Win!");
                 reset();
             }
-        }else if(guessesLeft == 0){
+        }
+        else if(guessesLeft == 0){
             losses++;
             document.querySelector("#losses").innerHTML = "Losses: " + losses;
             alert("You Loose!");
             reset();
         }
+
+    	// if (badLetters.indexOf(guessedLetters = -1)){
+    	// 	guessesLeft-- ;
+    	// 	badLetters.push(guessedLetters);
+    	// }
 };
 
 
