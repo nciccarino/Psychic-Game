@@ -1,0 +1,34 @@
+body {
+	background-image: url("../../whirlpool.png");
+}
+
+#header {
+	background-color: white; 
+	color: purple;
+	font-family: cursive;
+}
+
+#box-left {
+	background-color: white;
+	width: 460px;
+	color: purple;
+	margin-left: 12px;
+}
+
+#game {
+	padding: 15px;
+	font-family: cursive;font-size: 30px;
+}
+
+#box-right {
+	background-color: white;
+	margin-left: 40px;
+	width: 460px; 
+}
+
+#img {
+	padding: 15px; 
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

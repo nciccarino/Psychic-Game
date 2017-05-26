@@ -6,92 +6,47 @@
 	<title>Psychic Game</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
-	<h1>Psychic Game</h1>
+	<div class="container" id= "container">
 
-	<div id= "game">
-		<ul class= "list">
-			<li class="list-item"><p id="wins">Wins: </p></li>
-            <li class="list-item"><p id="losses">Losses: </p></li>
-            <li class="list-item"><p id="left">Guesses Left: </p></li>
-            <li class="list-item"><p id="soFar">Your Guesses so far: </p></li>
-        </ul> 
+		<div class="jumbotron jumbotron-fluid" id="header">
+		  	<div class="container">
+		    <h1 class="display-3">Psychic Game</h1>
+		    <p class="lead">Click any alphabet key to get started. Guess the right letter to Win.</p>
+		  </div>
+		</div>
 
+		<div class="row">
+			<div class="col-sm-6" id= "box-left">
+				<div id= "game">
+					<ul class= "list">
+						<li class="list-item"><p id="wins">Wins: </p></li>
+			      <li class="list-item"><p id="losses">Losses: </p></li>
+			      <li class="list-item"><p id="left">Guesses Left: </p></li>
+			      <li class="list-item"><p id="soFar">Your Guesses so far: </p></li>
+			    </ul> 
+				</div>
+			</div>
+		
+			<div class="col-sm-6" id= "box-right">
+				<img src="http://68.media.tumblr.com/tumblr_lwz3guVcKi1r8a63to1_400.jpg" id= "img" align= center alt= "meme">
+			</div>
+		</div>
+
+	</div>
+
+<script src= assets/javascript/game.js></script>
 </body>
-
-<script type="text/javascript">
-	
-var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-var wins = 0;
-var losses = 0;
-var guesses = 9;
-var guessesLeft = 9;
-var guessedLetters = [];
-var answer = null;
-var badLetters = []; 
-
-
-//random
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-var updateGuessesSoFar = function() {
-  document.querySelector("#soFar").innerHTML = "Your Guesses so far: " + guessedLetters.join(", ");
-  		//find a way to not allow the same letter to be clicked twice
-
-};
-
-var updateGuessesLeft = function() {
-  document.querySelector("#left").innerHTML = "Guesses left: " + guessesLeft;
-};
-
-var updateAnswer = function() {
-  this.answer = this.computerChoices[Math.floor(Math.random() * this.computerChoices.length)];
-};
-
-var reset = function() {
-  totalGuesses = 9;
-  guessesLeft = 9;
-  guessedLetters = [];
-
-  updateAnswer();
-  updateGuessesLeft();
-  updateGuessesSoFar();
-}
-
-document.onkeyup = function(event) {
-    guessesLeft--;
-  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-  guessedLetters.push(userGuess);
-  updateGuessesLeft();
-  updateGuessesSoFar();
-
-        if (guessesLeft > 0){
-            if (userGuess == answer){
-                wins++;
-                document.querySelector("#wins").innerHTML = "Wins: " + wins;
-                alert("You Win!");
-                reset();
-            }
-        }
-        else if(guessesLeft == 0){
-            losses++;
-            document.querySelector("#losses").innerHTML = "Losses: " + losses;
-            alert("You Loose!");
-            reset();
-        }
-
-    	// if (badLetters.indexOf(guessedLetters = -1)){
-    	// 	guessesLeft-- ;
-    	// 	badLetters.push(guessedLetters);
-    	// }
-};
-
-
-</script>
-
-
 </html>
